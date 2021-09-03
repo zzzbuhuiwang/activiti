@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--数据源配置dbcp-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/activiti?useSSL=true&amp;nullCatalogMeansCurrent=true&amp;serverTimezone=GMT&amp;useUnicode=true&amp;characterEncoding=utf8" />
+        <property name="username" value="root" />
+        <property name="password" value="mysql" />
+    </bean>
+    <!--activiti单独运行的ProcessEngine配置对象(processEngineConfiguration),使用单独启动方式
+        默认情况下：bean的id=processEngineConfiguration
+    -->
+    <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+        <!--数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+       <!-- <property name="jdbcDriver" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/activiti" />
+        <property name="jdbcUsername" value="root" />
+        <property name="jdbcPassword" value="root" />-->
+        <!--数据库表处理策略 - 代表是否生成表结构-->
+        <property name="databaseSchemaUpdate" value="true"/>
+    </bean>
+</beans>
