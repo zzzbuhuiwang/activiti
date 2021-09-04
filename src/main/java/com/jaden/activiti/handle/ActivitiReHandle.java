@@ -40,7 +40,7 @@ public class ActivitiReHandle {
         //3、流程定义查询器
         ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery();
         //4、通过流程定义的key 获取流程定义对象，
-        ProcessDefinition processDefinition = processDefinitionQuery.singleResult();
+        ProcessDefinition processDefinition = processDefinitionQuery.processDefinitionKey("test").singleResult();
         //4、key对应多个流程定义时，list() 输出并根据流程定义的版本号进行排序
         /*List<ProcessDefinition> processDefinitions = processDefinitionQuery.processDefinitionKey("test")
                 .orderByProcessDefinitionVersion().desc().list();*/
