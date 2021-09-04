@@ -6,6 +6,7 @@ import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
 
 /**
+ * 第二步
  * 启动流程实例:
  *     前提是先已经完成流程定义的部署工作
  *

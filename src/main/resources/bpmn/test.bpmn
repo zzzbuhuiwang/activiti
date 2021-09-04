@@ -30,7 +30,7 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_6" id="Shape-_6">
-        <omgdc:Bounds height="32.0" width="32.0" x="185.0" y="245.0"/>
+        <omgdc:Bounds height="32.0" width="32.0" x="180.0" y="245.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
@@ -50,8 +50,8 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="_5" targetElement="_6">
-        <omgdi:waypoint x="201.0" y="200.0"/>
-        <omgdi:waypoint x="201.0" y="245.0"/>
+        <omgdi:waypoint x="196.0" y="200.0"/>
+        <omgdi:waypoint x="196.0" y="245.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
