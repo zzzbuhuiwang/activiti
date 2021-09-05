@@ -39,7 +39,9 @@ public class ActivitiTaskThird {
                 .taskAssignee("shier")
                 .singleResult();
         //4、通过任务列表获取任务ID 完成任务处理
-        taskService.complete(task.getId());
+        if(task != null) {
+            taskService.complete(task.getId());
+        }
 
         //任务列表的展示
         /*for(Task tasks :taskList){
