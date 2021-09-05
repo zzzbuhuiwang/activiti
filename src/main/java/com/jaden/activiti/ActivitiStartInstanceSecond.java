@@ -44,6 +44,8 @@ public class ActivitiStartInstanceSecond {
 
         Holiday holiday = new Holiday();
         holiday.setNum(5F);
+        Map<String,Object> mapHoliday = new HashMap<String, Object>();
+        mapHoliday.put("holiday",holiday);
         //3、通过流程定义的key 创建流程实例
         //第一个参数：流程定义key
         //ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test");
@@ -52,8 +54,9 @@ public class ActivitiStartInstanceSecond {
         //runtimeService.setVariables(processInstance.getId(),mapAssign);
         //当前流程实例设置流程变量（流程实例Id，流程变量名，流程变量值）
         runtimeService.setVariable(processInstance.getId(),"holiday",holiday);
-        //第三个参数：动态assignee键值对
+        //第三个参数：动态assignee键值对（流程变量值）
         //ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100", mapAssign);
+        //ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100", mapHoliday);
 
         //4、输出流程实例的相关信息
         System.out.println("流程部署ID: "+processInstance.getDeploymentId());//null
