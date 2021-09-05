@@ -5,6 +5,9 @@ import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 第二步
  * 启动流程实例:
@@ -22,6 +25,9 @@ import org.activiti.engine.runtime.ProcessInstance;
  *  启动流程实例 并添加业务标识id
  *      即 act_ru_execution 表 businessKey 存入业务标识id
  *  单个流程实例挂起与激活
+ *  启动流程实例 动态设置assignee
+ *      流程设计bpmn 中 assignee 值使用 UEL 表达式
+ *          ${assignee1}、${assignee2}
  */
 public class ActivitiStartInstanceSecond {
     public static void main(String[] args){
@@ -31,11 +37,16 @@ public class ActivitiStartInstanceSecond {
         //2、获取RunService 流程运行对象
         RuntimeService runtimeService = processEngine.getRuntimeService();
 
+        Map<String,Object> mapAssign = new HashMap<String,Object>();
+        mapAssign.put("assignee1","yiyi");
+        mapAssign.put("assignee2","shier");
         //3、通过流程定义的key 创建流程实例
         //第一个参数：流程定义key
-        //第二个参数：业务标识id
         //ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test");
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100");
+        //第二个参数：业务标识id
+        //ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100");
+        //第三个参数：动态assignee键值对
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100", mapAssign);
 
         //4、输出流程实例的相关信息
         System.out.println("流程部署ID: "+processInstance.getDeploymentId());//null
