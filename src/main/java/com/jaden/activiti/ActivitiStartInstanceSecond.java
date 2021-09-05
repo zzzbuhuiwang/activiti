@@ -21,6 +21,7 @@ import org.activiti.engine.runtime.ProcessInstance;
  *          act_ru_task  任务
  *  启动流程实例 并添加业务标识id
  *      即 act_ru_execution 表 businessKey 存入业务标识id
+ *  单个流程实例挂起与激活
  */
 public class ActivitiStartInstanceSecond {
     public static void main(String[] args){
@@ -41,5 +42,19 @@ public class ActivitiStartInstanceSecond {
         System.out.println("流程定义ID: "+processInstance.getProcessDefinitionId());//test:1:4
         System.out.println("流程实例ID: "+processInstance.getId());//2501
         System.out.println("活动ID: "+processInstance.getActivityId());//null
+
+        //获取当前流程定义的实例是否为暂停状态
+        boolean suspended = processInstance.isSuspended();
+        //获取流程实例Id
+        String processInstanceId = processInstance.getId();
+        if(suspended){
+            //暂停时，激活流程实例
+            runtimeService.activateProcessInstanceById(processInstanceId);
+            System.out.println("流程实例："+processInstanceId+"激活");
+        }else{
+            //没暂停时，挂起流程实例
+            runtimeService.suspendProcessInstanceById(processInstanceId);
+            System.out.println("流程实例："+processInstanceId+"挂起");
+        }
     }
 }
