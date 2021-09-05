@@ -47,6 +47,8 @@ public class ActivitiTaskThird {
         mapHoliday.put("holiday",holiday);
         //4、通过任务列表获取任务ID 完成任务处理
         if(task != null) {
+            //当前任务设置 流程参数
+            //taskService.setVariables(task.getId(), mapHoliday);
             //taskService.complete(task.getId());
             //完成当前任务时设置 流程参数，必须在使用参数前设置
             taskService.complete(task.getId(), mapHoliday);
