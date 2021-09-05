@@ -1,11 +1,14 @@
 package com.jaden.activiti;
 
+import com.jaden.activiti.pojo.Holiday;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *  第三步
@@ -38,9 +41,15 @@ public class ActivitiTaskThird {
                 .processDefinitionKey("test")
                 .taskAssignee("shier")
                 .singleResult();
+        Holiday holiday = new Holiday();
+        holiday.setNum(5F);
+        Map<String,Object> mapHoliday = new HashMap<String, Object>();
+        mapHoliday.put("holiday",holiday);
         //4、通过任务列表获取任务ID 完成任务处理
         if(task != null) {
-            taskService.complete(task.getId());
+            //taskService.complete(task.getId());
+            //完成当前任务时设置 流程参数，必须在使用参数前设置
+            taskService.complete(task.getId(), mapHoliday);
         }
 
         //任务列表的展示
