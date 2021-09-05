@@ -30,6 +30,7 @@ import java.util.List;
  *              IO流转换，引入commons-io.jar包处理IO操作
  *
  *  删除流程定义
+ *  流程定义挂起与激活 （全部流程实例挂起与激活）
  */
 public class ActivitiReHandle {
     public static void main(String[] args){
@@ -90,5 +91,19 @@ public class ActivitiReHandle {
          *          repositoryService.deleteDeployment("1",true);
          */
         //repositoryService.deleteDeployment(processDefinition.getDeploymentId());
+        //四、流程定义挂起与激活
+        //获取流程定义的实例是否都为暂停状态
+        boolean suspended = processDefinition.isSuspended();
+        //获取流程定义Id
+        String processDefinitionId = processDefinition.getId();
+        if(suspended){
+            //暂停时，激活流程定义
+            repositoryService.activateProcessDefinitionById(processDefinitionId,true,null);
+            System.out.println("流程定义："+processDefinitionId+"激活");
+        }else{
+            //没暂停时，挂起流程定义
+            repositoryService.suspendProcessDefinitionById(processDefinitionId,true,null);
+            System.out.println("流程定义："+processDefinitionId+"挂起");
+        }
     }
 }
