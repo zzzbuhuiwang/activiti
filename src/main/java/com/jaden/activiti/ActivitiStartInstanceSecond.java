@@ -19,6 +19,8 @@ import org.activiti.engine.runtime.ProcessInstance;
  *          act_ru_execution   执行表
  *          act_ru_identitylink   参与者信息
  *          act_ru_task  任务
+ *  启动流程实例 并添加业务标识id
+ *      即 act_ru_execution 表 businessKey 存入业务标识id
  */
 public class ActivitiStartInstanceSecond {
     public static void main(String[] args){
@@ -29,7 +31,10 @@ public class ActivitiStartInstanceSecond {
         RuntimeService runtimeService = processEngine.getRuntimeService();
 
         //3、通过流程定义的key 创建流程实例
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test");
+        //第一个参数：流程定义key
+        //第二个参数：业务标识id
+        //ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test");
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100");
 
         //4、输出流程实例的相关信息
         System.out.println("流程部署ID: "+processInstance.getDeploymentId());//null
