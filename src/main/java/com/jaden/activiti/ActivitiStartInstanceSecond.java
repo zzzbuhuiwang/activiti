@@ -1,5 +1,6 @@
 package com.jaden.activiti;
 
+import com.jaden.activiti.pojo.Holiday;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RuntimeService;
@@ -40,13 +41,19 @@ public class ActivitiStartInstanceSecond {
         Map<String,Object> mapAssign = new HashMap<String,Object>();
         mapAssign.put("assignee1","yiyi");
         mapAssign.put("assignee2","shier");
+
+        Holiday holiday = new Holiday();
+        holiday.setNum(5F);
         //3、通过流程定义的key 创建流程实例
         //第一个参数：流程定义key
         //ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test");
         //第二个参数：业务标识id
-        //ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100");
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100");
+        //runtimeService.setVariables(processInstance.getId(),mapAssign);
+        //当前流程实例设置流程变量（流程实例Id，流程变量名，流程变量值）
+        runtimeService.setVariable(processInstance.getId(),"holiday",holiday);
         //第三个参数：动态assignee键值对
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100", mapAssign);
+        //ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test", "100", mapAssign);
 
         //4、输出流程实例的相关信息
         System.out.println("流程部署ID: "+processInstance.getDeploymentId());//null
