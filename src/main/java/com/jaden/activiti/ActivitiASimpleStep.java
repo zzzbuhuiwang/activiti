@@ -36,9 +36,28 @@ public class ActivitiASimpleStep {
                 .processDefinitionKey("test")
                 .taskAssignee("zhangsan")
                 .list();
+        //第五步扩展：候选人查询、拾取、归还、交接
+        List<Task> candidateTaskList = taskService.createTaskQuery()
+                .processDefinitionKey("test")
+                .taskCandidateUser("候选人xxx")
+                .list();
+        for(Task task : candidateTaskList){
+            if(task!=null){
+                taskService.claim(task.getId(),"候选人xxx");
+                //任务负责人设置为null 即 归还任务
+                taskService.setAssignee(task.getId(), null);
+                //任务负责人设置为交接人xxx 即 交接任务
+                //  交接人xxx 要在交接前确定是否为候选人，是候选人再交接
+                taskService.setAssignee(task.getId(), "交接人xxx");
+                System.out.println("任务拾取完毕!");
+            }
+        }
+
         //第六步：用户办理任务
         for(Task task :taskList){
-            taskService.complete(task.getId());
+            if(task != null) {
+                taskService.complete(task.getId());
+            }
         }
         //第七步：流程结束。工作流流程中用户循序执行第五步、第六步，直到没有下一个任务/结点
 
