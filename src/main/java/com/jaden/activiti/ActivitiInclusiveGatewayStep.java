@@ -1,6 +1,5 @@
 package com.jaden.activiti;
 
-import com.jaden.activiti.pojo.Holiday;
 import org.activiti.engine.*;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -15,6 +14,9 @@ import java.util.Map;
  *      注意：
  *          具有排他网关和并行网并的一些共同点
  *          可以设置流程变量，当流程变量取值都成立时，此时若干个分支都可以执行
+ *
+ *      是排他网关和并行网关结合体。
+ *      在分支时，需要判断条件，符合条件的分支，将会执行，所有分支执行完成后最终才进行汇聚。
  */
 public class ActivitiInclusiveGatewayStep {
     public static void main(String[] args){
