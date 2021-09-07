@@ -27,8 +27,6 @@
         <property name="transactionManager" ref="transactionManager" />
         <!-- 数据库策略 -->
         <property name="databaseSchemaUpdate" value="drop-create" />
-        <!-- activiti的定时任务关闭 -->
-        <!--<property name="jobExecutorActivate" value="false" />-->
     </bean>
     <!-- 流程引擎 -->
     <bean id="processEngine"
@@ -48,9 +46,6 @@
     <!-- 历史管理service -->
     <bean id="historyService" factory-bean="processEngine"
           factory-method="getHistoryService" />
-    <!-- 引擎管理service -->
-    <bean id="managementService" factory-bean="processEngine"
-          factory-method="getManagementService" />
 
 
     <!-- 事务管理器 -->
